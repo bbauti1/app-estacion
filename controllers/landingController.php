@@ -1,14 +1,6 @@
 <?php 
 
-	
-	// carga de plantilla
-	$f_view = fopen('views/landingView.html', "r");
-
-	$buffer = "";
-
-	while (!feof($f_view)) {
-	 	$buffer .= fgets($f_view);
-	} 
+	$buffer = file_get_contents('views/landingView.html');
 		
 	// modificacion de la plantilla
 

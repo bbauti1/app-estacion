@@ -1,13 +1,7 @@
 <?php 
 
 	// carga de plantilla
-	$f_view = fopen('views/loginView.html', "r");
-
-	$buffer = "";
-
-	while (!feof($f_view)) {
-	 	$buffer .= fgets($f_view);
-	} 
+	$buffer = file_get_contents('views/loginView.html');
 		
 	// modificacion de la plantilla
 
