@@ -1,12 +1,8 @@
 <?php 
-
-	// carga de plantilla
-	$buffer = file_get_contents('views/loginView.html');
-		
-	// modificacion de la plantilla
-
+	
+	// carga la plantilla
+	$tpl = loadTPL("login");
 
 	// imprimir en pantalla la plantilla
-	echo $buffer;
-
+	printTPL($tpl);
  ?>

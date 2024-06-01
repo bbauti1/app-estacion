@@ -1,14 +1,17 @@
 <?php 
 
-	$buffer = file_get_contents('views/landingView.html');
+	// incluye el modelo que conecta con la tabla de usuarios
+	include_once 'models/Users.php';
+
+	// carga la plantilla
+	$tpl = loadTPL("landing");
 		
-	// modificacion de la plantilla
+	// variables a reemplazar en la plantilla con sus valores
+	$var = ["CANT_HUERTAS" => getCantHuertas(), "CANT_USERS" => 30];
 
-	$cantHuerta = 5000;
-
-	$buffer = str_replace("{{CANT_HUERTAS}}", $cantHuerta, $buffer);
-
+	// reemplazo de variables en la plantilla
+	$tpl =setVarsTPL($var,$tpl);
 
 	// imprimir en pantalla la plantilla
-	echo $buffer;
+	printTPL($tpl);
  ?>

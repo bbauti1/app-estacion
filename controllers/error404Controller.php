@@ -1,5 +1,8 @@
 <?php 
 
-	include_once 'views/error404View.html';
-
+	// carga la plantilla
+	$tpl = loadTPL("error404");
+		
+	// imprimir en pantalla la plantilla
+	printTPL($tpl);
  ?>
