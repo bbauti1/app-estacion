@@ -1,8 +1,8 @@
 <?php 
 	
-	// carga la plantilla
-	$tpl = loadTPL("login");
+	// Carga la vista
+	$tpl = new Pork("login");
 
-	// imprimir en pantalla la plantilla
-	printTPL($tpl);
+	// imprime la vista en la página
+	$tpl->print();
  ?>

@@ -1,8 +1,8 @@
 <?php 
 
-	// carga la plantilla
-	$tpl = loadTPL("error404");
-		
-	// imprimir en pantalla la plantilla
-	printTPL($tpl);
+	// Carga la vista
+	$tpl = new Pork("error404");
+
+	// imprime la vista en la página
+	$tpl->print();
  ?>

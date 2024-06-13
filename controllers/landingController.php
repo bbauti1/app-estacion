@@ -3,15 +3,19 @@
 	// incluye el modelo que conecta con la tabla de usuarios
 	include_once 'models/Users.php';
 
-	// carga la plantilla
-	$tpl = loadTPL("landing");
-		
+	// carga la vista
+	$tpl = new Pork("landing");
+
+	// creamos un usuario
+	$usuario = new Users();
+
 	// variables a reemplazar en la plantilla con sus valores
-	$var = ["CANT_HUERTAS" => getCantHuertas(), "CANT_USERS" => 30];
+	$var = ["CANT_HUERTAS" => 1, "CANT_USERS" => $usuario->cant()];
 
-	// reemplazo de variables en la plantilla
-	$tpl =setVarsTPL($var,$tpl);
+	// reemplaza las variables de la vista con los valores del vector
+	$tpl->setVars($var);
 
-	// imprimir en pantalla la plantilla
-	printTPL($tpl);
+	// imprime la vista en la página
+	$tpl->print();
+
  ?>

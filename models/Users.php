@@ -1,21 +1,67 @@
-<?php 
-
+<?php
+	
+	// Incluimos la clase que conecta a la base de datos
+	include_once 'DBAbstract.php';
+	
 	/**
 	 * 
-	 * Retorna la cantidad de huertas cargas en la tabla huertas
-	 * @return int cantidad de huertas
+	 * Clase para trabajar con la tabla de usuarios
 	 * 
 	 * */
-	function getCantHuertas(){
+	class Users extends DBAbstract{
 
-		// Por ahora el valor a retornar esta hardcodeado, cuando
-		// se cree la base de datos y las tablas se utilizará
-		// las stored procedures
+		public $email;
+		public $nombre;
+		public $id;
 
-		//$sql = "call getCantHuertas()"; 
+		/**
+		 * 
+		 * ejectuta el constructor de DBAbstract
+		 * 
+		 * */
+		function __construct(){
+			parent::__construct();
+		}
 
-		return 5400;
+
+		/**
+		 * 
+		 * Para loguear a un usuario
+		 * 
+		 * */
+		function login(){
+
+		}
+
+		/**
+		 * 
+		 * Busca un usuario por medio de su email
+		 * @param string $email correo electrónico del usuario
+		 * @return array datos con datos del usuario
+		 * 
+		 * */
+		function getByEmail($email){
+
+			$result = $this->query("SELECT * FROM users WHERE email = '$email'");
+
+			$this->nombre = $result[0]["first_name"];
+
+			return $result;
+		}
+
+		/**
+		 * 
+		 * Cantidad total de usuarios
+		 * @return int cantidad de usuarios
+		 * 
+		 * */
+		function cant(){
+			$this->query("SELECT * FROM users");
+			return $this->db->affected_rows;
+		}
 	}
 
+
+	
 
  ?>
