@@ -1,8 +1,5 @@
 <?php 
 
-	// incluye el modelo que conecta con la tabla de usuarios
-	include_once 'models/Users.php';
-
 	// carga la vista
 	$tpl = new Pork("landing");
 

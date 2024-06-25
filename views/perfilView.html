@@ -24,7 +24,7 @@
 
 			<div id="control">
 				
-				<a href="?slug=login" class="btn__login">Iniciar sesión</a>
+				<a href="?slug=logout" class="btn__login">Cerrar sesión</a>
 
 			</div>
 
@@ -39,15 +39,14 @@
 				</div>
 
 				<div id="window__description">
-					<h1>Registrarse es simple</h1>
+					<h1>Perfil</h1>
 
 					<form action="" method="POST">
 						
 						<div id="error_msg">{{MSG_ERROR}}</div>
 
-						<input type="email" name="txt_email" placeholder="email" required>
-						<input type="password" name="txt_contraseña" placeholder="contraseña" required>
-						<input type="submit" name="btn__register" value="Unirme">
+						<input type="text" name="txt_nombre" value="{{USER_NAME}}" placeholder="nombre" required>
+						<input type="submit" name="btn__actualizar" value="Guardar">
 					</form>
 				</div>
 

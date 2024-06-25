@@ -4,16 +4,70 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
+
+	<link rel="stylesheet" href="views/static/css/styles.css">
 </head>
 <body>
 
-	<h1>Iniciar sesión</h1>
 
-	<form action="">
-		<input type="text" placeholder="user">
-		<input type="text" placeholder="pass">
-		<input type="submit" name="btn__login" value="Iniciar">
-	</form>
+	<div id="wrapper">
+		
+
+		<div id="header">
+			
+			<div id="hero">
+				<a href="?slug=landing">
+				<img src="img/system/hero.png">
+				</a>
+			</div>
+
+
+			<div id="control">
+				
+				<a href="?slug=register" class="btn__register">Registrarse</a>
+
+			</div>
+
+		</div>
+
+		<div id="content">
+			
+			<div id="window">
+				
+				<div id="window__img">
+					<img src="img/system/login.svg" alt="">
+				</div>
+
+				<div id="window__description">
+					<h1>Iniciar sesión</h1>
+
+					<form action="" method="POST">
+
+						<div id="error_msg">{{MSG_ERROR}}</div>
+
+						<input type="email" name="txt_email" placeholder="email" required>
+						<input type="password" name="txt_contraseña" placeholder="contraseña" required>
+						<input type="submit" name="btn__login" value="Iniciar">
+					</form>
+				</div>
+
+			</div>
+
+		</div>
+
+		<div id="footer">
+			
+			<div id="footer__author">
+				@mattprofe
+			</div>
+
+			<div id="footer__plus">
+				mattprofe.com.ar
+			</div>
+
+		</div>
+	</div>
+
 
 	
 </body>
