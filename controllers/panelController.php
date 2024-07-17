@@ -1,7 +1,7 @@
 <?php 
 
 	// variables para la vista
-	$vars = ["USER_NAME" => $_SESSION['huertaenred']["user"]->nombre]; 
+	$vars = ["USER_NAME" => $_SESSION['huertaenred']["user"]->first_name]; 
 	
 	// Carga la vista
 	$tpl = new Pork("panel");

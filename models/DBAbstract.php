@@ -30,6 +30,15 @@
 		 * */
 		function __construct(){
 			
+			$this->connect();
+		}
+
+		/**
+		 * 
+		 * Realiza la conexión con la base de datos
+		 * 
+		 * */
+		function connect(){
 			// instancia la clase mysqli
 			$this->db = @new mysqli(HOST, USER, PASS, DB);
 			
@@ -40,18 +49,18 @@
 				echo "codigo de error (".$this->db->connect_errno.") ".$this->db->connect_error;
 				exit();
 			}
-			
 		}
-
 
 		/**
 		 * 
 		 * Realiza una consulta a la base de datos
 		 * @param string $sql query
-		 * @return array matriz con el resultado de la query|bool en caso de otro tipo de query
+		 * @return object resultado de la query
 		 * 
 		 * */
 		function query($sql){
+
+			$this->connect();
 
 			// ejecuta la consulta a la db
 			$result = $this->db->query($sql);
@@ -64,14 +73,23 @@
 			}
 
 
+			// $first_word_sql = strstr($sql, " ", true);
+
 			// La consulta no es del tipo select entonces retorna true
 
-			if(strpos($sql, "SELECT")=== false){
-				return true;
-			}else{
-				// es select retorna array
-				return $result->fetch_all(MYSQLI_ASSOC);
-			}
+			/*switch ($first_word_sql) {
+				case 'CALL':
+				case 'DESCRIBE':
+				case 'SELECT':
+					return $result->fetch_all(MYSQLI_ASSOC);
+					break;
+				
+				default:
+						return true;
+					break;
+			}*/
+
+			return $result;
 
 			
 		}

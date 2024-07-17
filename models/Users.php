@@ -10,17 +10,25 @@
 	 * */
 	class Users extends DBAbstract{
 
-		public $email;
-		public $nombre;
-		public $id;
-
 		/**
 		 * 
 		 * ejectuta el constructor de DBAbstract
+		 * Realiza auto creación de atributos en la clase en base a la tabla
 		 * 
 		 * */
 		function __construct(){
 			parent::__construct();
+
+		 	$request = $this->query("DESCRIBE users");
+
+		 	$request = $request->fetch_all(MYSQLI_ASSOC);
+
+			foreach ($request as $key => $value) {
+
+				$var = $value["Field"];
+
+				$this->$var = "";
+			}
 		}
 
 		/**
@@ -29,6 +37,24 @@
 		 * 
 		 * */
 		function logout(){
+
+		}
+
+
+		/**
+		 * 
+		 * soft delete sobre el usuario
+		 * 
+		 * 
+		 * */
+		function leaveOut(){
+
+			$fecha_hora = date("Y-m-d H:i:s");
+			$id = $this->id;
+
+			$ssql = "UPDATE users SET delete_at='$fecha_hora' WHERE id=$id";
+
+			$this->query($ssql);
 
 		}
 
@@ -46,7 +72,9 @@
 			$pass = md5($form["txt_contraseña"]);
 
 			// averigua si el email existe en la tabla de users
-			$result = $this->query("SELECT * FROM users WHERE email = '$email'");
+			$result = $this->query("CALL `login`('$email')");
+
+			$result = $result->fetch_all(MYSQLI_ASSOC);
 
 			// si no hay filas
 			if(count($result)==0){
@@ -59,7 +87,8 @@
 			}
 
 			// carga los atributos con los datos del usuario
-			$this->nombre = $result[0]["first_name"];
+			$this->first_name = $result[0]["first_name"];
+			$this->last_name = $result[0]["last_name"];
 			$this->email = $result[0]["email"];
 			$this->id = $result[0]["id"];
 
@@ -76,21 +105,19 @@
 		 * */
 		function update($form){
 
-			// invocamos al constructor de DBAbstract para evitar el error de que 
-			// existe y no existe la conexión a la DB
-			parent::__construct();
-
 			$nombre = $form["txt_nombre"];
+			$apellido = $form["txt_apellido"];
 			$id = $this->id;
 
 			// actualiza el nombre
-			$sql = "UPDATE users SET first_name = '$nombre' WHERE id=$id ";
+			$sql = "CALL `users_update`('$nombre','$apellido','$id')";
 
 			// ejecuta la consulta
 			$this->query($sql);
 
 			// reemplaza el atributo nombre con el valor nuevo
-			$this->nombre = $nombre;
+			$this->first_name = $nombre;
+			$this->last_name = $apellido;
 
 			// var_dump($this);
 
@@ -116,6 +143,8 @@
 			// Averigua si el email ya esta en la tabla de users
 			$result = $this->query("SELECT * FROM users WHERE email = '$email'");
 
+			$result = $result->fetch_all(MYSQLI_ASSOC);
+
 			// si no hay resultado entonces podemos agregar el usuario
 			if(count($result)==0){
 
@@ -124,8 +153,25 @@
 
 				$this->query($sql);
 
+				// id del nuevo usuario
+				$this->id = $this->db->insert_id;
+
 				// mensaje de exito al agregar
 				return ["errno" => 200, "error" => "Usuario agregado"];
+			}
+
+			// Es alguien que volvio arrastrandose?
+			if($result[0]["delete_at"]!='0000-00-00 00:00:00'){
+				$fecha_hora = date("0000-00-00 00:00:00");
+				$id = $result[0]["id"];
+				$this->id = $id;
+
+				$ssql = "UPDATE users SET delete_at='$fecha_hora', first_name='', last_name='' WHERE id=$id";
+
+				$this->query($ssql);
+
+				// mensaje del email ya esta registrado
+				return ["errno" => 201, "error" => "Usuario vuelve arrastrandose"];
 			}
 
 			// mensaje del email ya esta registrado
@@ -143,6 +189,8 @@
 
 			// Busca el email
 			$result = $this->query("SELECT * FROM users WHERE email = '$email'");
+
+			$result = $result->fetch_all(MYSQLI_ASSOC);
 
 			// carca el atributo nombre con el nombre del usuario
 			$this->nombre = $result[0]["first_name"];

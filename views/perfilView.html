@@ -9,6 +9,30 @@
 </head>
 <body>
 
+	<div id="fog">
+		<div id="popup">
+			
+
+			<div id="popup__title">
+				<div id="popup__close">X</div>
+			</div>
+
+			<div id="popup__description">
+				Desea abandonar la aplicacion
+			</div>
+
+			<div id="popup__control">
+				
+				<a href="?slug=abandonar">
+					<div id="popup__accept">Aceptar</div>
+				</a>
+				<div id="popup__cancel">Cancelar</div>
+
+			</div>
+
+		</div>
+	</div>	
+
 
 	<div id="wrapper">
 		
@@ -46,8 +70,11 @@
 						<div id="error_msg">{{MSG_ERROR}}</div>
 
 						<input type="text" name="txt_nombre" value="{{USER_NAME}}" placeholder="nombre" required>
+						<input type="text" name="txt_apellido" value="{{USER_LAST_NAME}}" placeholder="apellido" required>
 						<input type="submit" name="btn__actualizar" value="Guardar">
 					</form>
+
+					<button id="leave_out">Abandonar</button>
 				</div>
 
 			</div>
@@ -67,6 +94,30 @@
 		</div>
 	</div>
 
+
+
+	<script type="text/javascript">
+		
+		leave_out.addEventListener("click", e => {
+			fog.style.display = "flex";
+		})
+
+
+		function closeFog(){
+			fog.style.display = "none";
+		}
+
+		popup__cancel.addEventListener("click", e => {
+			closeFog()
+		})
+
+		popup__close.addEventListener("click", e => {
+			closeFog()
+		})	
+
+
+
+	</script>
 
 	
 </body>

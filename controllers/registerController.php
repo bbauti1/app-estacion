@@ -16,13 +16,13 @@
 		$response = $usuario->register($_POST);
 
 		// en caso de que el registro sea correcto
-		if($response["errno"]==200){
+		if($response["errno"]==200 || $response["errno"]==201){
 
 			// carga el objeto user en el vector de sesion
 			$_SESSION['huertaenred']['user'] = $usuario;
 
-			// redirecciona al panel de usuario
-			header("Location: ?slug=panel");
+			// redirecciona al perfil de usuario
+			header("Location: ?slug=perfil");
 		}
 
 		// carga el mensaje de error en caso de que no se pueda registrar el nuevo usuario

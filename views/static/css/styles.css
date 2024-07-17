@@ -119,3 +119,40 @@
 			position:relative;
 			top:1px;
 		}
+
+
+#fog {
+  position: absolute;
+  z-index: 1;
+  background-color: #0000008a;
+  height: 100%;
+  width: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+#popup {
+  background-color: white;
+  border-radius: .5rem;
+  width: 300px;
+  overflow: hidden;
+}
+#popup__title {
+  background-color: cornflowerblue;
+  display: flex;
+  justify-content: right;
+}
+#popup__close {
+  background-color: red;
+  padding: .5rem;
+  color: white;
+  font-weight: bold;
+}
+#popup__description {
+  padding: 1rem;
+}
+#popup__control {
+  display: flex;
+  padding: 1rem;
+  justify-content: space-around;
+}

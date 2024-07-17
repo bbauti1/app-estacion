@@ -28,7 +28,7 @@
 
 	// listas de acceso por tipo de usuario
 	$seccion_anonimo = ["landing", "login", "register"];
-	$seccion_usuario = ["panel", "logout", "perfil"];	
+	$seccion_usuario = ["panel", "logout", "perfil", "abandonar"];	
 
 	// si el usuario esta logueado
 	if(isset($_SESSION['huertaenred'])){

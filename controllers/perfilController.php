@@ -4,7 +4,9 @@
 	$usuario = $_SESSION['huertaenred']["user"];
 
 	// variables para la vista
-	$vars = ["MSG_ERROR" => "", "USER_NAME" => $usuario->nombre];
+	$vars = ["MSG_ERROR" => "",
+	 "USER_NAME" => $usuario->first_name,
+	 "USER_LAST_NAME" => $usuario->last_name];
 
 	// si se presiono el boton de actualizar
 	if(isset($_POST['btn__actualizar'])){
