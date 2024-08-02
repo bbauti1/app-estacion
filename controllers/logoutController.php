@@ -7,5 +7,5 @@
 	session_destroy();
 
 	// redirecciona a la landind
-	header("Location: ?slug=landing");
+	header("Location: landing");
  ?>

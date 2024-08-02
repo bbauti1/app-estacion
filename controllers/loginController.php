@@ -22,7 +22,7 @@
 			$_SESSION['huertaenred']['user'] = $usuario;
 
 			// redirecciona al panel del usuario
-			header("Location: ?slug=panel");
+			header("Location: panel");
 		}
 
 		// la respuesta al logueo es error

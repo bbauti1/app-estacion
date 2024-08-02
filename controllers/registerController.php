@@ -22,7 +22,7 @@
 			$_SESSION['huertaenred']['user'] = $usuario;
 
 			// redirecciona al perfil de usuario
-			header("Location: ?slug=perfil");
+			header("Location: perfil");
 		}
 
 		// carga el mensaje de error en caso de que no se pueda registrar el nuevo usuario

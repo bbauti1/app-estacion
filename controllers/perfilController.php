@@ -6,7 +6,8 @@
 	// variables para la vista
 	$vars = ["MSG_ERROR" => "",
 	 "USER_NAME" => $usuario->first_name,
-	 "USER_LAST_NAME" => $usuario->last_name];
+	 "USER_LAST_NAME" => $usuario->last_name,
+	 "AVATAR" => $usuario->avatar];
 
 	// si se presiono el boton de actualizar
 	if(isset($_POST['btn__actualizar'])){
@@ -21,7 +22,7 @@
 		if($response["errno"]==200){
 
 			// redirecciona al panel
-			header("Location: ?slug=panel");
+			header("Location: panel");
 		}
 
 		// no se logro actualizar muestra el mensaje de error
