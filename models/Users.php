@@ -223,6 +223,23 @@
 			$this->query("SELECT * FROM users");
 			return $this->db->affected_rows;
 		}
+
+		/**
+		 * 
+		 * @brief Retorna un listado de usuarios limitado
+		 * @param array $params [0] inicio, [1] cantidad
+		 * @return array listado de usuarios
+		 * 
+		 * */
+		function getAll($params){
+
+			$vars = explode("_",$params);
+
+			$ssql = "SELECT * FROM users LIMIT {$vars[0]},{$vars[1]}";
+
+			return $this->query($ssql)->fetch_all(MYSQLI_ASSOC);
+
+		}
 	}
 
  ?>

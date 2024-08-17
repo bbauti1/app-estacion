@@ -72,25 +72,8 @@
 				exit();
 			}
 
-
-			// $first_word_sql = strstr($sql, " ", true);
-
-			// La consulta no es del tipo select entonces retorna true
-
-			/*switch ($first_word_sql) {
-				case 'CALL':
-				case 'DESCRIBE':
-				case 'SELECT':
-					return $result->fetch_all(MYSQLI_ASSOC);
-					break;
-				
-				default:
-						return true;
-					break;
-			}*/
-
+			/*< Retorna un objeto mysqli_result*/
 			return $result;
-
 			
 		}
 	}

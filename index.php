@@ -14,8 +14,8 @@
 	// por defecto seccion es landing
 	$seccion = "landing";
 
-	// si existe slug entonces la sección es su contenido
-	if(isset($_GET['slug']))
+	// slug tiene valor
+	if($_GET['slug']!="")
 		$seccion = $_GET['slug'];
 
 	// verificamos que exista el controlador
