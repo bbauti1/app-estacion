@@ -1,10 +1,7 @@
 <?php 
 
-	// carga de modelos para que esten disponibles en todos los controladores
-	include_once 'models/Users.php';
-
-	// inicia o continua la sesión
-	session_start();
+	/*< incluimos las variables de entorno */
+	include_once 'env.php';
 
 	# index es un Router el cual redirecciona a las distintas secciones
 	
@@ -24,34 +21,10 @@
 		$seccion = "error404";
 	}
 
-	// === firewall
 
 	// listas de acceso por tipo de usuario
-	$seccion_anonimo = ["landing", "login", "register"];
-	$seccion_usuario = ["panel", "logout", "perfil", "abandonar"];	
-
-	// si el usuario esta logueado
-	if(isset($_SESSION['huertaenred'])){
-		// recorro la lista de secciones no permitidas
-		foreach ($seccion_anonimo as $key => $value) {
-			if($value==$seccion){
-				$seccion = "panel";
-				break;
-			}
-		}
-	}else{ // si no hay usuario logueado
-
-		// recorro la lista de secciones no permitidas
-		foreach ($seccion_usuario as $key => $value) {
-			if($value==$seccion){
-				$seccion = "landing";
-				break;
-			}
-		}
-	}
-
-	// === fin firewall
-
+	$seccion_anonimo = ["landing", "panel", "detalles", "contacto"];
+	$seccion_usuario = ["panel", "detalles", "contacto"];	
 
 	// Carga del controlador
 	include_once 'controllers/'.$seccion.'Controller.php';

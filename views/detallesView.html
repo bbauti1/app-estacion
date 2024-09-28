@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="views/static/css/styles.css">
+	<title>Detalles</title>
+</head>
+<body>
+
+	@extern('header')
+
+	<div id="datos"></div>
+
+	<script type="text/javascript">
+	   
+	        document.addEventListener("DOMContentLoaded", () => {
+
+	  
+	            const urlParams = new URLSearchParams(window.location.search);
+	            const chipId = urlParams.get('chipid');  
+	            
+	            
+	            if (chipId) {
+	                loadEstacion(chipId).then(data => {
+	                    console.log(data);  
+	                
+	                   
+	                    let listado = document.querySelector("#datos");
+
+	                    for (let i = 0; i < data.length; i++) {
+	                        listado.innerHTML += `
+	                            <section class="card">
+					                <div class="apodo"> ${data[i].estacion} </div>
+					                <div class="ubicacion"> ${data[i].ubicacion} </div>
+					                <div class="visitas"> ${data[i].fecha} </div>
+					            </section>
+	                        `;
+	                    }
+	                }).catch(err => {
+	                    document.querySelector("#datos").innerHTML = `<p>Error al cargar los datos.</p>`;
+	                    console.error("Error al cargar la estación:", err);
+	                });
+	            } else {
+	                document.querySelector("#datos").innerHTML = `<p>No se encontró chipid existente de alguna estacion. </p>`;
+	            }
+	        });
+
+	       
+	        async function loadEstacion(chipId) {
+	        
+	            const response = await fetch(`https://mattprofe.com.ar/proyectos/app-estacion/datos.php?chipid=${chipId}&cant=1`);
+	            const data = await response.json();
+	            return data;
+	        }
+	    
+	</script>
+
+@extern('footer')
+
+</body>
+</html>
